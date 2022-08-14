@@ -1,20 +1,20 @@
 <template>
   <v-row>
     <v-col md="2" sm="0"></v-col>
-    <v-col md="8" sm="12" class="d-flex justify-center align-center mr-20">
-      <v-card height="1000px" width="1500px" color="white" class="bgData grey--text text--darken-0" :elevation="0">
-        <drag-it-dude class="LinechartHeight" style="position:relative">
-          <LineChartGenerator :chart-options="chartOptions" :chart-data="chartData" :chart-id="chartId"
-            :dataset-id-key="datasetIdKey" :plugins="plugins" :css-classes="cssClasses" :styles="styles" :width="width"
+    <v-col md="8" sm="12" class="d-flex mr-20">
+      <v-card height="1000px" width="1500px" :elevation="0">
+        <drag-it-dude class="dragData">
+          <LineChartGenerator 
+            :chart-options="chartOptions" 
+            :chart-data="chartData" 
+            :width="width"
             :height="height" />
         </drag-it-dude>
-
       </v-card>
     </v-col>
     <v-col md="2" sm="0"></v-col>
   </v-row>
 </template>
-
 <script>
 import { Line as LineChartGenerator } from 'vue-chartjs/legacy'
 import DragItDude from 'vue-drag-it-dude';
@@ -49,14 +49,6 @@ export default {
     DragItDude
   },
   props: {
-    chartId: {
-      type: String,
-      default: 'line-chart'
-    },
-    datasetIdKey: {
-      type: String,
-      default: 'label'
-    },
     width: {
       type: Number,
       default: 400
@@ -65,18 +57,7 @@ export default {
       type: Number,
       default: 400
     },
-    cssClasses: {
-      default: '',
-      type: String
-    },
-    styles: {
-      type: Object,
-      default: () => { }
-    },
-    plugins: {
-      type: Array,
-      default: () => []
-    }
+  
   },
   data() {
     return {
@@ -93,7 +74,7 @@ export default {
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
-        
+
       },
     }
   },
@@ -112,9 +93,10 @@ export default {
 }
 </script>
 <style scoped>
-  .bgData {
-    background-color: white;
-  }
-
-
+.bgData {
+  background-color: white;
+}
+.dragData{
+  position:relative;
+}
 </style>
